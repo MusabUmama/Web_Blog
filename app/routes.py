@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect, url_for, request
 from app import app, db, bcrypt
 from app.models import User, Post
-from app.forms import RegistrationForm, LoginForm, PostForm, EditProfileForm
+from app.forms import RegistrationForm, LoginForm, PostForm
 from flask_login import login_user, current_user, logout_user, login_required
 
 @app.route('/')
@@ -49,7 +49,7 @@ def edit_post(post_id):
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
-        return redirect(url_for('home'))
+        return redirect(url_for('app/templates/index.html'))
     form = RegistrationForm()
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
@@ -79,5 +79,3 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('home'))
-
-# Additional routes can be added for user profile, comments, and other features.

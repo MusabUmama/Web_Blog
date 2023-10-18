@@ -9,11 +9,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <!-- Page Title -->
-    <title>{% block title %}My Blog{% endblock %}</title>
+    <title>{% block title %}Web Blog{% endblock %}</title>
   </head>
   <body>
     <nav class="navbar navbar-expand-md navbar-light bg-light">
-      <a class="navbar-brand" href="{{ url_for('home') }}">NewBlog</a>
+      <a class="navbar-brand" href="base.html">NewBlog</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -22,9 +22,7 @@
           <li class="nav-item">
             <a class="nav-link" href="index.html">Home</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('about') }}">About</a>
-          </li>
+
           <li class="nav-item">
             <a class="nav-link" href="create_post.html">New Post</a>
           </li>
