@@ -23,7 +23,7 @@ def create_post():
         post = Post(title=form.title.data, content=form.content.data, author=current_user)
         db.session.add(post)
         db.session.commit()
-        flash('Your post has been created!', 'success')
+        flash('Post has been created!', 'success')
         return redirect(url_for('home'))
     return render_template('create_post.html', title='New Post', form=form)
 
@@ -33,7 +33,7 @@ def edit_post(post_id):
     post = Post.query.get_or_404(post_id)
     if post.author != current_user:
         flash('You are not authorized to edit this post.', 'danger')
-        return redirect(url_for('home'))
+        return redirect(url_for('app/templates/index.html'))
     form = PostForm()
     if form.validate_on_submit():
         post.title = form.title.data
@@ -49,7 +49,7 @@ def edit_post(post_id):
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
-        return redirect(url_for('app/templates/index.html'))
+        return redirect(url_for('home'))
     form = RegistrationForm()
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
