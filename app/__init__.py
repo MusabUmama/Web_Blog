@@ -7,6 +7,7 @@ app = Flask(__name__)
 
 app.config.from_pyfile('config.py')
 
+
 db = SQLAlchemy(app)
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'

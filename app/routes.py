@@ -4,6 +4,7 @@ from app.models import User, Post
 from app.forms import RegistrationForm, LoginForm, PostForm
 from flask_login import login_user, current_user, logout_user, login_required
 
+
 @app.route('/')
 @app.route('/home')
 def home():
@@ -33,7 +34,7 @@ def edit_post(post_id):
     post = Post.query.get_or_404(post_id)
     if post.author != current_user:
         flash('You are not authorized to edit this post.', 'danger')
-        return redirect(url_for('app/templates/index.html'))
+        return redirect(url_for('post', post_id=post.id))
     form = PostForm()
     if form.validate_on_submit():
         post.title = form.title.data
