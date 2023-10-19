@@ -6,5 +6,5 @@
   <h1>{{ post.title }}</h1>
   <p>{{ post.content }}</p>
   <p>Posted by: {{ post.author.username }}</p>
-  <a href="base.html">Back to Home</a>
+  <a href="{{ url_for('home') }}">Back to Home</a>
 {% endblock %}

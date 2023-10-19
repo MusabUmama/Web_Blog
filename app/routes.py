@@ -46,6 +46,12 @@ def edit_post(post_id):
         form.content.data = post.content
     return render_template('edit_post.html', title='Edit Post', form=form, post=post)
 
+@app.route('/my_posts')
+@login_required
+def my_posts():
+    posts = Post.query.filter_by(author=current_user).all()
+    return render_template('my_posts.html', title='My Posts', posts=posts)
+
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
@@ -80,9 +86,3 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('home'))
-
-@app.route('/my_posts')
-@login_required
-def my_posts():
-    posts = Post.query.filter_by(author=current_user).all()
-    return render_template('my_posts.html', title='My Posts', posts=posts)
