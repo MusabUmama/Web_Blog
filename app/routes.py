@@ -76,6 +76,13 @@ def login():
     return render_template('login.html', title='Login', form=form)
 
 @app.route('/logout')
+@login_required
 def logout():
     logout_user()
     return redirect(url_for('home'))
+
+@app.route('/my_posts')
+@login_required
+def my_posts():
+    posts = Post.query.filter_by(author=current_user).all()
+    return render_template('my_posts.html', title='My Posts', posts=posts)
